@@ -39,15 +39,16 @@
             <div class="bg-white rounded-md p-4 mb-4">
               <div class="flex items-center mb-2">
                 <div class="flex mr-2">
-                  <span class="text-yellow-500 text-xl">&#9733;</span>
-                  <span class="text-yellow-500 text-xl">&#9733;</span>
-                  <span class="text-yellow-500 text-xl">&#9733;</span>
-                  <span class="text-yellow-500 text-xl">&#9733;</span>
-                  <span class="text-gray-400 text-xl">&#9733;</span>
+                  {% for i in review.get_yellow_stars %}
+                      <span class="text-yellow-500 text-xl">&#9733;</span>
+                  {% endfor %}
+                  {% for i in review.get_black_stars %}
+                      <span class="text-gray-400 text-xl">&#9733;</span>
+                  {% endfor %}
                 </div>
                 <span class="text-gray-600">(4.0)</span>
               </div>
-              <p class="text-gray-700">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ut tincidunt enim, et rutrum est. Fusce ac rutrum justo.</p>
+              <p class="text-gray-700">{{ review.review }}</p>
               <div class="mt-2">
                   <span class="text-gray-500">by Abdullah Alam</span>
               </div>

@@ -23,6 +23,9 @@ class Website(models.Model):
     def get_black_stars(self):
         return ['&#9733;' for i in range(0, 5-self.get_average_rating())]
 
+    def __str__(self):
+        return self.title
+
 class Reviews(models.Model):
     # django site stuff
     site = models.ForeignKey(Site, on_delete=models.CASCADE, default=1, editable=False)
@@ -31,4 +34,14 @@ class Reviews(models.Model):
     website = models.ForeignKey("Website", on_delete=models.CASCADE)
     user = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
     review = models.TextField(blank=True, default=None, null=True)
+    calculated_rating = models.IntegerField()
+
+    def get_yellow_stars(self):
+        return ['&#9733;' for i in range(0, self.calculated_rating )]
+
+    def get_black_stars(self):
+        return ['&#9733;' for i in range(0, 5-self.calculated_rating )]
+
+    def __str__(self):
+        return str(self.website) + ' - ' + self.user.first_name + ' ' + self.user.last_name
 
