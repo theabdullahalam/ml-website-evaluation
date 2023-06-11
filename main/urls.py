@@ -8,4 +8,7 @@ urlpatterns = [
     path('website', views.website, name='website'),
     path('website/', views.website, name='website'),
 
+    path('website/<uuid:website_uuid>', views.website, name='website'),
+    path('website/<uuid:website_uuid>/', views.website, name='website'),
+
 ]

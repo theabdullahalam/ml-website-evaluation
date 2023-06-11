@@ -8,15 +8,16 @@
 </head>
 <body class="p-4 bg-gradient-to-r from-sky-500 to-indigo-500"> 
     <div class="max-w-xl mx-auto py-8">
-        <h1 class="text-3xl font-bold mb-4  text-white">Website Name</h1>
+        <h1 class="text-3xl font-bold mb-4  text-white">{{ website.title }}</h1>
         
         <div class="flex items-center mb-4">
           <div class="flex mr-2">
-            <span class="text-yellow-500 text-xl">&#9733;</span>
-            <span class="text-yellow-500 text-xl">&#9733;</span>
-            <span class="text-yellow-500 text-xl">&#9733;</span>
-            <span class="text-yellow-500 text-xl">&#9733;</span>
-            <span class="text-gray-400 text-xl">&#9733;</span>
+            {% for i in website.get_yellow_stars %}
+                <span class="text-yellow-500 text-xl">&#9733;</span>
+            {% endfor %}
+            {% for i in website.get_black_stars %}
+                <span class="text-gray-400 text-xl">&#9733;</span>
+            {% endfor %}
           </div>
           <span class="text-gray-600">(4.0)</span>
         </div>
@@ -33,40 +34,25 @@
     
         <div>
           <h2 class="text-xl font-semibold mb-4 text-white">Existing Reviews:</h2>
-    
-          <div class="bg-white rounded-md p-4">
-            <div class="flex items-center mb-2">
-              <div class="flex mr-2">
-                <span class="text-yellow-500 text-xl">&#9733;</span>
-                <span class="text-yellow-500 text-xl">&#9733;</span>
-                <span class="text-yellow-500 text-xl">&#9733;</span>
-                <span class="text-yellow-500 text-xl">&#9733;</span>
-                <span class="text-gray-400 text-xl">&#9733;</span>
+          
+          {% for review in reviews %}
+            <div class="bg-white rounded-md p-4 mb-4">
+              <div class="flex items-center mb-2">
+                <div class="flex mr-2">
+                  <span class="text-yellow-500 text-xl">&#9733;</span>
+                  <span class="text-yellow-500 text-xl">&#9733;</span>
+                  <span class="text-yellow-500 text-xl">&#9733;</span>
+                  <span class="text-yellow-500 text-xl">&#9733;</span>
+                  <span class="text-gray-400 text-xl">&#9733;</span>
+                </div>
+                <span class="text-gray-600">(4.0)</span>
               </div>
-              <span class="text-gray-600">(4.0)</span>
-            </div>
-            <p class="text-gray-700">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ut tincidunt enim, et rutrum est. Fusce ac rutrum justo.</p>
-            <div class="mt-2">
-                <span class="text-gray-500">by Abdullah Alam</span>
-            </div>
-          </div>
-    
-          <div class="bg-white rounded-md p-4 mt-4">
-            <div class="flex items-center mb-2">
-              <div class="flex mr-2">
-                <span class="text-yellow-500 text-xl">&#9733;</span>
-                <span class="text-yellow-500 text-xl">&#9733;</span>
-                <span class="text-yellow-500 text-xl">&#9733;</span>
-                <span class="text-yellow-500 text-xl">&#9733;</span>
-                <span class="text-gray-400 text-xl">&#9733;</span>
+              <p class="text-gray-700">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ut tincidunt enim, et rutrum est. Fusce ac rutrum justo.</p>
+              <div class="mt-2">
+                  <span class="text-gray-500">by Abdullah Alam</span>
               </div>
-              <span class="text-gray-600">(4.0)</span>
             </div>
-            <p class="text-gray-700">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ut tincidunt enim, et rutrum est. Fusce ac rutrum justo.</p>
-            <div class="mt-2">
-                <span class="text-gray-500">by Gurshaan Chawla</span>
-              </div>
-          </div>
+          {% endfor %}
         </div>
       </div>
 </body>

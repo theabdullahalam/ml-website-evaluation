@@ -15,20 +15,21 @@
         
         <div>
             
-            {% for website in "websites" %}
+            {% for website in websites %}
             
-                <div class="max-w-lg rounded overflow-hidden shadow-lg mt-2 cursor-pointer" style="background-color: white;" onclick="window.open('/website', '_blank')">
+                <div class="max-w-lg rounded overflow-hidden shadow-lg mt-2 cursor-pointer" style="background-color: white;" onclick="window.open('/website/{{ website.website_id }}/', '_blank')">
                     <div class="px-6 py-4">
-                    <div class="font-bold text-xl mb-2">Website Name</div>
-                    <p class="text-gray-700 text-base">Description of the website goes here.</p>
+                    <div class="font-bold text-xl mb-2">{{ website.title }}</div>
+                    <p class="text-gray-700 text-base">{{ website.description }}</p>
                     </div>
                     <div class="px-6 py-4">
                     <div class="flex items-center">
-                        <span class="text-yellow-500 text-xl">&#9733;</span>
-                        <span class="text-yellow-500 text-xl">&#9733;</span>
-                        <span class="text-yellow-500 text-xl">&#9733;</span>
-                        <span class="text-yellow-500 text-xl">&#9733;</span>
-                        <span class="text-gray-400 text-xl">&#9733;</span>
+                        {% for i in website.get_yellow_stars %}
+                            <span class="text-yellow-500 text-xl">&#9733;</span>
+                        {% endfor %}
+                        {% for i in website.get_black_stars %}
+                            <span class="text-gray-400 text-xl">&#9733;</span>
+                        {% endfor %}
                     </div>
                     </div>
                 </div>
