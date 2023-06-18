@@ -11,4 +11,6 @@ urlpatterns = [
     path('website/<uuid:website_uuid>', views.website, name='website'),
     path('website/<uuid:website_uuid>/', views.website, name='website'),
 
+    path('create-review/', views.create_review, name='create_review'),
+
 ]

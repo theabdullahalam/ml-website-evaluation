@@ -2,6 +2,7 @@ from django.db import models
 from django.conf import settings
 from django.contrib.sites.models import Site
 import uuid
+from .utils import get_calculated_rating
 
 class Website(models.Model):
     # django site stuff
@@ -44,4 +45,13 @@ class Reviews(models.Model):
 
     def __str__(self):
         return str(self.website) + ' - ' + self.user.first_name + ' ' + self.user.last_name
+
+    def save(self, *args, **kwargs):
+
+        # code to calculate rating based on review
+        # dummy for now
+        self.calculated_rating = get_calculated_rating(self.review)
+
+        super(Reviews, self).save(*args, **kwargs)
+
 
