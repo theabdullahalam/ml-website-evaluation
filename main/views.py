@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.http import JsonResponse
 from .models import Website, Reviews
 from django.contrib.auth import get_user_model
+from django.shortcuts import redirect
+from django.urls import reverse
 
 # Create your views here.
 def home(request):
@@ -43,8 +45,10 @@ def create_review(request):
 
         review.save()
 
+        redirect_url = reverse('website', kwargs={'website_uuid': website_id})
+
         # Return a JSON response indicating success
-        return JsonResponse({'status': 'success'})
+        return redirect(redirect_url)
 
     # Return a JSON response indicating failure
     return JsonResponse({'status': 'error'})
