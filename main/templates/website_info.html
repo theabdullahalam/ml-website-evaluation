@@ -20,7 +20,7 @@
                 <span class="text-gray-400 text-xl">&#9733;</span>
             {% endfor %}
           </div>
-          <span class="text-gray-600">(4.0)</span>
+          <span class="text-gray-600">({{ website.get_average_rating }})</span>
         </div>
     
         <div class="mb-8">
@@ -51,11 +51,11 @@
                       <span class="text-gray-400 text-xl">&#9733;</span>
                   {% endfor %}
                 </div>
-                <span class="text-gray-600">(4.0)</span>
+                <span class="text-gray-600">({{ review.calculated_rating }})</span>
               </div>
               <p class="text-gray-700">{{ review.review }}</p>
               <div class="mt-2">
-                  <span class="text-gray-500">by Abdullah Alam</span>
+                  <span class="text-gray-500">by {{ review.user.first_name}} {{ review.user.last_name }}</span>
               </div>
             </div>
           {% endfor %}
