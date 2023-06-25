@@ -3,6 +3,7 @@ from django.conf import settings
 from django.contrib.sites.models import Site
 import uuid
 from .utils import get_calculated_rating
+from django.db.models import Avg
 
 class Website(models.Model):
     # django site stuff
@@ -14,9 +15,8 @@ class Website(models.Model):
     url = models.CharField(max_length=250)
 
     def get_average_rating(self):
-        # gets ratings based on average of ratings of all reviews
-        # dummy value for now
-        return 4
+        average_rating = Reviews.objects.aggregate(Avg('calculated_rating'))['calculated_rating__avg']
+        return int(average_rating)
 
     def get_yellow_stars(self):
         return ['&#9733;' for i in range(0, self.get_average_rating())]
