@@ -1,5 +1,11 @@
 import joblib
-import random
 
 def get_calculated_rating(review_content):
-    return random.randint(1, 5)
+    model = joblib.load('/home/abdullah/college/sem2/capstone/myproj/websitereview/main/models/trained_model.joblib')
+    vectorizer = joblib.load('/home/abdullah/college/sem2/capstone/myproj/websitereview/main/models/vectorizer.joblib')
+
+    X_input_vectorized = vectorizer.transform([review_content])
+
+    predictions = model.predict(X_input_vectorized)
+
+    return predictions[0]

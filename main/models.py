@@ -15,8 +15,11 @@ class Website(models.Model):
     url = models.CharField(max_length=250)
 
     def get_average_rating(self):
-        average_rating = Reviews.objects.aggregate(Avg('calculated_rating'))['calculated_rating__avg']
-        return int(average_rating)
+        try:
+            average_rating = Reviews.objects.aggregate(Avg('calculated_rating'))['calculated_rating__avg']
+            return int(average_rating)
+        except TypeError:
+            return 0
 
     def get_yellow_stars(self):
         return ['&#9733;' for i in range(0, self.get_average_rating())]
