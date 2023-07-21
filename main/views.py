@@ -6,6 +6,8 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from .forms import CustomUserCreationForm
+from django.contrib.auth.decorators import login_required
+
 
 
 def user_login(request):
@@ -63,8 +65,8 @@ def home(request):
 
     return render(request, 'index.html', context=context)
 
-def website(request, website_uuid):
-    
+@login_required
+def website(request, website_uuid):    
     website = Website.objects.get(website_id=website_uuid)
     reviews = Reviews.objects.filter(website=website)
 
