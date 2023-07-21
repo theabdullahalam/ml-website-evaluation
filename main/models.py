@@ -16,7 +16,7 @@ class Website(models.Model):
 
     def get_average_rating(self):
         try:
-            average_rating = Reviews.objects.aggregate(Avg('calculated_rating'))['calculated_rating__avg']
+            average_rating = Reviews.objects.filter(website_id=self.website_id).aggregate(Avg('calculated_rating'))['calculated_rating__avg']
             return int(average_rating)
         except TypeError:
             return 0

@@ -5,6 +5,7 @@ from django.contrib.auth import get_user_model, login, logout
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from .forms import CustomUserCreationForm
 
 
 def user_login(request):
@@ -22,18 +23,34 @@ def user_logout(request):
     logout(request)
     return redirect('home')  # Redirect to the home page after logout.
 
+# def user_signup(request):
+#     if request.method == 'POST':
+#         form = UserCreationForm(request.POST)
+#         if form.is_valid():
+#             user = form.save()
+#             login(request, user)
+#             return redirect('home')  # Replace 'home' with the name of your home view or URL name.
+#         else:
+#             print('Invalid Form')
+#     else:
+#         form = UserCreationForm()
+#     return render(request, 'signup.html', {'form': form})
+
+
 def user_signup(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = CustomUserCreationForm(request.POST)
         if form.is_valid():
-            user = form.save()
+            user = form.save(commit=False)
+            user.first_name = form.cleaned_data['first_name']
+            user.last_name = form.cleaned_data['last_name']
+            user.save()
             login(request, user)
             return redirect('home')  # Replace 'home' with the name of your home view or URL name.
-        else:
-            print('Invalid Form')
     else:
-        form = UserCreationForm()
+        form = CustomUserCreationForm()
     return render(request, 'signup.html', {'form': form})
+
 
 
 def home(request):
