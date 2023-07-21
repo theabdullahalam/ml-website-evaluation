@@ -3,9 +3,9 @@
 The Website Evaluation Platform is a Django-based web application that utilizes machine learning to analyze user reviews and calculate website ratings based on those reviews. 
 
 ## Features
-- User Registration and Authentication: Users can register and authenticate to access the platform. `todo`
+- User Registration and Authentication: Users can register and authenticate to access the platform. `complete`
 - Submitting Reviews: Users can submit reviews for different websites. `complete`
-- ML-based Rating Calculation: The platform employs machine learning techniques to analyze user reviews and calculate website ratings. `todo`
+- ML-based Rating Calculation: The platform employs machine learning techniques to analyze user reviews and calculate website ratings. `complete`
 - Website Listing: The platform displays a list of websites along with their ratings and other relevant information. `complete`
 - Admin Panel: An admin panel is provided to manage users, reviews, and websites. `complete`
 
