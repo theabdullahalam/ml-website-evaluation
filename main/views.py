@@ -16,7 +16,7 @@ def user_login(request):
         if form.is_valid():
             user = form.get_user()
             login(request, user)
-            return redirect('home')  # Replace 'home' with the name of your home view or URL name.
+            return redirect('home')
     else:
         form = AuthenticationForm()
     return render(request, 'login.html', {'form': form})
@@ -48,7 +48,7 @@ def user_signup(request):
             user.last_name = form.cleaned_data['last_name']
             user.save()
             login(request, user)
-            return redirect('home')  # Replace 'home' with the name of your home view or URL name.
+            return redirect('home')
     else:
         form = CustomUserCreationForm()
     return render(request, 'signup.html', {'form': form})
@@ -89,7 +89,7 @@ def create_review(request):
         review = Reviews.objects.create(
             review=review_content,
             website = Website.objects.get(website_id=website_id),
-            user = request.user # just using the default user for now
+            user = request.user 
         )
 
         review.save()
