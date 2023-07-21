@@ -15,7 +15,7 @@
 
         
             {% if user.is_authenticated %}
-                <span class="text-white font-bold mr-4">Logged in as {{ user.username }}</span>
+                <span class="text-white font-bold mr-4">Logged in as @{{ user.username }}</span>
                 <br />
                 <br />
                 <a href="{% url 'logout' %}" class="px-4 py-2 rounded-md bg-red-500 text-white font-bold hover:bg-red-600">Logout</a>
