@@ -65,7 +65,6 @@ def home(request):
 
     return render(request, 'index.html', context=context)
 
-@login_required
 def website(request, website_uuid):    
     website = Website.objects.get(website_id=website_uuid)
     reviews = Reviews.objects.filter(website=website)
@@ -77,6 +76,7 @@ def website(request, website_uuid):
 
     return render(request, 'website_info.html', context=context)
 
+@login_required
 def create_review(request):
     if request.method == 'POST':
 

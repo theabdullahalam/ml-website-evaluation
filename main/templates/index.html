@@ -13,21 +13,26 @@
     <div class="max-w-xl mx-auto py-8">
         <h1 class="text-3xl font-bold mb-4  text-white">Websites</h1>
 
-        <div class="flex justify-start mb-4">
+        
             {% if user.is_authenticated %}
-                <span class="text-white font-bold mr-4">Welcome, {{ user.username }}</span>
+                <span class="text-white font-bold mr-4">Logged in as {{ user.username }}</span>
+                <br />
+                <br />
                 <a href="{% url 'logout' %}" class="px-4 py-2 rounded-md bg-red-500 text-white font-bold hover:bg-red-600">Logout</a>
+                <br />
+                <br />
             {% else %}
-                <a href="{% url 'login' %}" class="px-4 py-2 rounded-md bg-blue-500 text-white font-bold hover:bg-blue-600">Login</a>
-                <a href="{% url 'signup' %}" class="px-4 py-2 rounded-md bg-green-500 text-white font-bold hover:bg-green-600 ml-4">Sign Up</a>
+                <div class="flex justify-start mb-4">
+                    <a href="{% url 'login' %}" class="px-4 py-2 rounded-md bg-orange-500 text-white font-bold hover:bg-orange-600">Login</a>
+                    <a href="{% url 'signup' %}" class="px-4 py-2 rounded-md bg-green-500 text-white font-bold hover:bg-green-600 ml-4">Sign Up</a>
+                </div>
             {% endif %}
-        </div>
         
         <div>
             
             {% for website in websites %}
             
-                <div class="max-w-lg rounded overflow-hidden shadow-lg mt-2 cursor-pointer" style="background-color: white;" onclick="window.open('/website/{{ website.website_id }}/', '_blank')">
+                <div class="max-w-lg rounded overflow-hidden shadow-lg mt-2 cursor-pointer" style="background-color: white;" onclick="location.href = '/website/{{ website.website_id }}/'">
                     <div class="px-6 py-4">
                     <div class="font-bold text-xl mb-2">{{ website.title }}</div>
                     <p class="text-gray-700 text-base">{{ website.description }}</p>
