@@ -12,6 +12,16 @@
 
     <div class="max-w-xl mx-auto py-8">
         <h1 class="text-3xl font-bold mb-4  text-white">Websites</h1>
+
+        <div class="flex justify-start mb-4">
+            {% if user.is_authenticated %}
+                <span class="text-white font-bold mr-4">Welcome, {{ user.username }}</span>
+                <a href="{% url 'logout' %}" class="px-4 py-2 rounded-md bg-red-500 text-white font-bold hover:bg-red-600">Logout</a>
+            {% else %}
+                <a href="{% url 'login' %}" class="px-4 py-2 rounded-md bg-blue-500 text-white font-bold hover:bg-blue-600">Login</a>
+                <a href="{% url 'signup' %}" class="px-4 py-2 rounded-md bg-green-500 text-white font-bold hover:bg-green-600 ml-4">Sign Up</a>
+            {% endif %}
+        </div>
         
         <div>
             

@@ -1,11 +1,41 @@
 from django.shortcuts import render
 from django.http import JsonResponse
 from .models import Website, Reviews
-from django.contrib.auth import get_user_model
-from django.shortcuts import redirect
+from django.contrib.auth import get_user_model, login, logout
+from django.shortcuts import render, redirect
 from django.urls import reverse
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 
-# Create your views here.
+
+def user_login(request):
+    if request.method == 'POST':
+        form = AuthenticationForm(request, data=request.POST)
+        if form.is_valid():
+            user = form.get_user()
+            login(request, user)
+            return redirect('home')  # Replace 'home' with the name of your home view or URL name.
+    else:
+        form = AuthenticationForm()
+    return render(request, 'login.html', {'form': form})
+
+def user_logout(request):
+    logout(request)
+    return redirect('home')  # Redirect to the home page after logout.
+
+def user_signup(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect('home')  # Replace 'home' with the name of your home view or URL name.
+        else:
+            print('Invalid Form')
+    else:
+        form = UserCreationForm()
+    return render(request, 'signup.html', {'form': form})
+
+
 def home(request):
 
     websites = Website.objects.all()
@@ -40,7 +70,7 @@ def create_review(request):
         review = Reviews.objects.create(
             review=review_content,
             website = Website.objects.get(website_id=website_id),
-            user = get_user_model().objects.all().first() # just using the default user for now
+            user = request.user # just using the default user for now
         )
 
         review.save()
