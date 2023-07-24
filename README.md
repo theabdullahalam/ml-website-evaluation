@@ -13,33 +13,34 @@ The Website Evaluation Platform is a Django-based web application that utilizes 
 1. Clone the repository:
 
 ```shell
-git clone https://github.com/your-username/website-evaluation-platform.git
+git clone git@github.com:theabdullahalam/ml-website-evaluation.git
 ```
 
 2. Navigate to the project directory:
 ```shell
-cd website-evaluation-platform
+cd ml-website-evaluation
 ```
 
-3. Navigate to the project directory:
+3. Create and activate a virtual environment (optional but recommended):
 ```shell
-
-```
-
-4. Create and activate a virtual environment (optional but recommended):
-```shell
-python3 -m venv venv
+python -m venv venv
 source venv/bin/activate
+# linux
 ```
 
-5. Install the required dependencies:
+4. Install the required dependencies:
 ```shell
 pip install -r requirements.txt
 ```
 
-6. Set up the database:
+5. Set up the database:
 ```shell
 python manage.py migrate
+```
+
+6. Create superuser:
+```shell
+python manage.py createsuperuser
 ```
 
 7. Start the development server:
