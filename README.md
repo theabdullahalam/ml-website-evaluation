@@ -56,4 +56,6 @@ python manage.py runserver
 - Log in to the admin panel:`http://localhost:8000/admin`
 - Add a couple of websites
 - Navigate to the homepage at `http://localhost:8000`
+- Login as the admin or sign up as another user (it doesn't matter)
 - Choose a website and submit a review
+- The star rating will be automatically calculated based on the sentiment of the review
