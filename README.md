@@ -51,7 +51,6 @@ python manage.py runserver
 8. Open your web browser and access the application at `http://localhost:8000`.
 
 ## Usage
-> Instructions to get it running in the current state of the project without the user login and authentication system setup
 
 - Create an account with `python manage.py createsuperuser`
 - Log in to the admin panel:`http://localhost:8000/admin`
