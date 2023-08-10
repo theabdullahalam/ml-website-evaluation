@@ -50,9 +50,6 @@ class Reviews(models.Model):
         return str(self.website) + ' - ' + self.user.first_name + ' ' + self.user.last_name
 
     def save(self, *args, **kwargs):
-
-        # code to calculate rating based on review
-        # dummy for now
         self.calculated_rating = get_calculated_rating(self.review)
 
         super(Reviews, self).save(*args, **kwargs)
