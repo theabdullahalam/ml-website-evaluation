@@ -1,8 +1,17 @@
+import os
 import joblib
 
+from pathlib import Path
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+
 def get_calculated_rating(review_content):
-    model = joblib.load('/home/abdullah/college/sem2/capstone/myproj/websitereview/main/models/trained_model.joblib')
-    vectorizer = joblib.load('/home/abdullah/college/sem2/capstone/myproj/websitereview/main/models/vectorizer.joblib')
+
+    model_filename = os.path.join(BASE_DIR, "main/models/trained_model.joblib")
+    vectorizer_filename = os.path.join(BASE_DIR, "main/models/vectorizer.joblib")
+
+    model = joblib.load(model_filename)
+    vectorizer = joblib.load(vectorizer_filename)
 
     X_input_vectorized = vectorizer.transform([review_content])
 
