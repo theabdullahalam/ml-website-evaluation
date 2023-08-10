@@ -28,7 +28,8 @@ DEBUG = True
 ALLOWED_HOSTS = [
     '0.0.0.0',
     'localhost',
-    '192.168.2.15'
+    '192.168.2.15',
+    'capstone.theabdullahalam.com',
 ]
 
 
